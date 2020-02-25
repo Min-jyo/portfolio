@@ -1,0 +1,20 @@
+{% extends 'members/base.html' %}
+
+{% block content %}
+<div>
+    <h1><a href="">Django Girls Blog</a></h1>
+</div>
+
+<div>
+    {% for user in users %}
+    <div>
+        <h2><a href="{% url 'member_detail' pk=user.pk %}">author: {{ user.author }}</a></h2>
+        <p>age: {{ user.age }}</p>
+        <p>email: {{ user.email }}</p>
+        <p>major: {{ user.major }}</p>
+        <p>marital_status: {{ user.marital_status }}</p>
+        <p>core_strength: {{ user.core_strength }}</p>
+    </div>
+    {% endfor %}
+</div>
+{% endblock %}
