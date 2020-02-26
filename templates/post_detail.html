@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="card mb-3">
+    <div class="card-body">
+        <h5 class="card-title">{{ post.title }}</h5>
+        <p class="card-text">{{ post.text|linebreaksbr }}</p>
+        <div>
+            <div class="btn-container float-left">
+                <a href="{% url 'url-name-post-delete-confirm' pk=post.pk %}" class="btn btn-danger btn-sm">삭제</a>
+                <a href="{% url 'url-name-post-edit' pk=post.pk %}" class="btn btn-info btn-sm">수정</a>
+                {% if post.published_date %}
+                <form action="{% url 'url-name-post-unpublish' pk=post.pk %}" method="POST" class="d-inline-block">
+                    {% csrf_token %}
+                    <button class="btn btn-primary btn-sm">발행취소</button>
+                </form>
+                {% else %}
+                <form action="{% url 'url-name-post-publish' pk=post.pk %}" method="POST" class="d-inline-block">
+                    {% csrf_token %}
+                    <button class="btn btn-primary btn-sm">발행</button>
+                </form>
+                {% endif %}
+
+            </div>
+            <div class="text-right">
+                <span class="small">생성일자: {{ post.created_date }}</span>
+                {% if post.published_date %}
+                <br>
+                <span class="small">발행일자: {{ post.published_date }}</span>
+                {% endif %}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
