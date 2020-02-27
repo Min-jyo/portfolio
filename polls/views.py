@@ -68,4 +68,23 @@ def results(request, question_id):
     return render(request, 'polls/results.html', context)
 
 def vote(request, question_id):
-    return HttpResponse(f"You're voting on question {question_id}.")
+
+    # 아무것도 선택되지 않은 경우
+    #   detail페이지로 다시 이동(redirect)
+
+    # GET parameter로 전달된 question_id에 해당하는 Question객체
+    question = get_object_or_404(Question, pk=question_id)
+
+    # form의 POST요청으로 전달된 Choice의 pk값
+    choice_pk = request.POST['choice']
+
+    # 전달받은 Choice pk에 해당하는 Choice객체
+    choice = get_object_or_404(Choice, pk=choice_pk)
+
+    # 선택된 Choice의 votes값을 1증가
+    choice.votes += 1
+    choice.save()
+
+    # results페이지로 이동
+    return redirect('polls:results', question_id=question_id)
+
