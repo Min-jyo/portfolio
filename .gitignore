@@ -1,11 +1,5 @@
-/requirements.txt
-/secrets.json
-
 .idea
-# Django User-uploaded static files root
-/.media
-/.static
-app/*.ipynb
+*.ipynb
 
 ### Git ###
 # Created by git for backups. To disable backups in Git:
