@@ -31,12 +31,21 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
+
+    'many_to_many.apps.ManyToManyConfig',
+    'many_to_one.apps.ManyToOneConfig',
+    'myapp.apps.MyappConfig',
+    'one_to_one.apps.OneToOneConfig',
+    'inheritance.abstract.apps.AbstractConfig',
+    'inheritance.multitable.apps.MultitableConfig',
+    'inheritance.proxy.apps.ProxyConfig',
     'django.contrib.admin',
     'django.contrib.auth',
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'django_extensions',
 ]
 
 MIDDLEWARE = [
